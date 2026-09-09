@@ -179,27 +179,15 @@
 const MOD_ROLE_ID = "1528305985519751178";
 const BOT_ROLE_ID = "1526913039457190050";
 
-// How often to auto-refresh data (in milliseconds)
-// 10000 = 10 seconds | 30000 = 30 seconds | 60000 = 1 minute
-const REFRESH_INTERVAL = 1000; 
+// Refresh interval set to 10 seconds to prevent rate limits
+const REFRESH_INTERVAL = 10000; 
 
 async function loadDiscordWidget() {
-  // 1. Fetch server name and invite link from standard public widget
-  try {
-    const response = await fetch('https://discord.com/api/guilds/1508402330913996841/widget.json');
-    const data = await response.json();
-    document.getElementById('server-name').innerText = data.name;
-    document.getElementById('online-count').innerText = `${data.presence_count} Online`;
-    document.getElementById('invite-btn').href = data.instant_invite;
-  } catch (e) {
-    console.error('Error fetching standard widget data:', e);
-  }
-
-  // 2. Fetch full member roster & total count from Python backend
   try {
     const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
     const botData = await botResponse.json();
 
+    // 1. Update Header Counts
     if (botData.total_members !== undefined) {
       document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
     }
@@ -212,8 +200,13 @@ async function loadDiscordWidget() {
     botList.innerHTML = '';
     memberList.innerHTML = '';
 
+    let onlineCount = 0;
+
+    // 2. Process Members
     botData.members.forEach(member => {
       if (member.status === 'offline') return;
+
+      onlineCount++;
 
       const li = document.createElement('li');
       li.className = 'member-item';
@@ -223,7 +216,7 @@ async function loadDiscordWidget() {
       avatar.alt = member.username;
 
       const name = document.createElement('span');
-      name.innerText = member.username;
+      name.innerText = member.display_name || member.username;
 
       li.appendChild(avatar);
       li.appendChild(name);
@@ -238,6 +231,8 @@ async function loadDiscordWidget() {
       }
     });
 
+    document.getElementById('online-count').innerText = `${onlineCount} Online`;
+
   } catch (e) {
     console.error('Error fetching bot server data:', e);
   }
@@ -246,9 +241,8 @@ async function loadDiscordWidget() {
 // Initial load on page startup
 loadDiscordWidget();
 
-// Automatically re-run the function every 10 seconds
+// Automatically re-run every 10 seconds
 setInterval(loadDiscordWidget, REFRESH_INTERVAL);
   </script>
-
 </body>
 </html>
