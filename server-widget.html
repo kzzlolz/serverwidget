@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Pacifico&family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -211,14 +211,19 @@
     }
 
     .card-events {
-      background-color: #d4e157;
-      color: #33691e;
-    }
+  background-color: #d4e157;
+  color: #33691e;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8rem;
+}
 
-    .card-movies {
-      background-color: #ba68c8;
-      color: #ffffff;
-    }
+.card-movies {
+  background-color: #ba68c8;
+  color: #ffffff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
 
     /* Responsive Mobile Layout */
     @media (max-width: 768px) {
@@ -238,7 +243,7 @@
     <!-- LEFT SIDE WIDGET -->
     <div id="discord-widget">
       <div class="widget-header">
-        <h3 id="server-name">My Discord Server</h3>
+        <h3 id="server-name">キティクラムズ・ベーカリー</h3>
         <div class="stats-container">
           <span class="stat-badge" id="online-count">0 Online</span>
           <span class="stat-badge-total" id="total-count-header">Total: --</span>
@@ -292,7 +297,7 @@
   <script>
 const MOD_ROLE_ID = "1528305985519751178";
 const BOT_ROLE_ID = "1526913039457190050";
-const REFRESH_INTERVAL = 5000; 
+const REFRESH_INTERVAL = 10000; 
 
 async function loadDiscordWidget() {
   try {
