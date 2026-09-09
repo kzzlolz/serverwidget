@@ -18,6 +18,7 @@
     }
 
     /* Body Background with GIF */
+/* Body Background with GIF */
 body {
   background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
   background-size: cover;
@@ -27,7 +28,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  overflow: hidden; /* Prevents scrollbars during entrance animation */
+  overflow: hidden;
 }
 
 /* Loading Screen Overlay */
@@ -68,58 +69,45 @@ body {
   to { transform: translateY(-15px); }
 }
 
-  body {
-      background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Quicksand', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow: hidden;
-    }
+/* Outer Container - Soft Warm Mauve Base */
+#widget-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  height: 85vh;
+  background-color: rgba(62, 44, 52, 0.88);
+  border: 4px solid #b3889b;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  color: #ffdce5;
+  
+  transform: translateY(100vh);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+}
 
-    /* Combined Outer Container (Dark Base + Slide Up) */
-    #widget-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      width: 100%;
-      max-width: 1100px;
-      height: 85vh;
-      background-color: rgba(26, 20, 28, 0.92); /* Darkened base */
-      border: 4px solid #4a2e39;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(4px);
-      color: #f8bbd0;
-      
-      transform: translateY(100vh);
-      opacity: 0;
-      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
-    }
+/* Triggered class to float up */
+#widget-wrapper.slide-up {
+  transform: translateY(0);
+  opacity: 1;
+}
 
-    /* Triggered class to float up */
-    #widget-wrapper.slide-up {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* LEFT SIDE: Widget Main */
-    #discord-widget {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: rgba(40, 30, 42, 0.8); /* Darkened panel */
-      border-radius: 16px;
-      padding: 20px;
-      border: 2px solid #4a2e39;
-      height: 100%;
-      overflow: hidden;
-    }
-
+/* LEFT SIDE: Discord Panel */
+#discord-widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(45, 32, 38, 0.75);
+  border-radius: 16px;
+  padding: 20px;
+  border: 2px solid #8c6375;
+  height: 100%;
+  overflow: hidden;
+}
     /* Header Styling */
     .widget-header {
       text-align: center;
