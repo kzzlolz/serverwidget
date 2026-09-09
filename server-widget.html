@@ -436,14 +436,17 @@ async function loadDiscordWidget() {
 
     document.getElementById('online-count').innerText = `${onlineCount} Online`;
 
-    // Dismiss loading screen & trigger float up animation
+    // --- REPLACE THE LOADER DISMISSAL CODE WITH THIS ---
     const loader = document.getElementById('loading-screen');
     const widget = document.getElementById('widget-wrapper');
     
     if (loader && !loader.classList.contains('hidden')) {
-      loader.classList.add('hidden');
-      widget.classList.add('slide-up');
-      document.body.style.overflow = 'auto'; // Re-enable scrolling if needed
+      // Hold the loading screen for 1.5 seconds (1500ms) so the animation plays smoothly
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        widget.classList.add('slide-up');
+        document.body.style.overflow = 'auto';
+      }, 1500); 
     }
     
   } catch (e) {
