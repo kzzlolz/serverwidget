@@ -289,72 +289,136 @@ body {
       }
     }
 
- /* Server Title & Left Panel Text Updates */
-.server-title {
-  color: #ffffff !important; /* Server Title: White */
-}
+ /* --- Optimized Muffin Rain Configuration --- */
 
-/* Lighten the inner top header container */
-.server-header,
-#discord-widget .header-box {
-  background-color: rgba(255, 255, 255, 0.12) !important; /* Softened inner box */
-  border-radius: 12px;
-  padding: 12px;
-}
-
-/* Category Title Color Adjustments */
-.category-title:nth-of-type(1) {
-  color: #ffcdd2 !important; /* Online Moderators: Pink */
-}
-
-.category-title:nth-of-type(2) {
-  color: #90caf9 !important; /* Online Bots: Soft Light Blue */
-}
-
-.category-title:nth-of-type(3) {
-  color: #ffffff !important; /* Online Members: White */
-}
-
-/* Floating Sparkly Muffins Container */
+/* 1. Muffin container and background setup */
 #widget-wrapper {
   position: relative;
-  overflow: hidden; /* Keeps floating sparkles contained */
+  overflow: hidden; /* Contains the rising muffins */
 }
 
-#widget-wrapper::before,
-#widget-wrapper::after {
+/* 2. Style the muffins (using a pseudo-element) */
+#widget-wrapper::before {
+  content: "";
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 5; /* Puts them in front of the background, behind text */
+  opacity: 0.8; /* Subtle transparency */
+  
+  /* Create multiple muffins using layered radial gradients.
+     Each gradient draws one "🧁✨" shape. */
+  background-image: 
+    /* Pattern: gradient(size, color/content at x% y%) */
+    radial-gradient(circle, #f8bbd0 2px, transparent 3px), /* Sparkle */
+    radial-gradient(circle, #ffe0e9 12px, transparent 13px), /* Muffin 1 */
+    
+    radial-gradient(circle, #f8bbd0 2px, transparent 3px), /* Sparkle */
+    radial-gradient(circle, #ffe0e9 12px, transparent 13px), /* Muffin 2 */
+    
+    radial-gradient(circle, #f8bbd0 2px, transparent 3px), /* Sparkle */
+    radial-gradient(circle, #ffe0e9 12px, transparent 13px); /* Muffin 3 */
+
+  /* Define positions for the initial state of the muffins (bottom of the widget) */
+  background-position: 
+    20% 100%, 20% 100%, /* Sparkle/Muffin 1 */
+    50% 100%, 50% 100%, /* Sparkle/Muffin 2 */
+    80% 100%, 80% 100%; /* Sparkle/Muffin 3 */
+    
+  background-repeat: no-repeat;
+  background-size: 24px 24px; /* Size of individual muffins */
+
+  /* Trigger the float animation */
+  animation: muffinRain 8s linear infinite;
+}
+
+/* 3. Define the floating animation */
+@keyframes muffinRain {
+  0% {
+    /* Start positions at the bottom, just off-screen */
+    background-position: 
+      20% 105%, 20% 105%,
+      50% 105%, 50% 105%,
+      80% 105%, 80% 105%;
+  }
+  100% {
+    /* End positions at the top, floating off-screen */
+    background-position: 
+      20% -15%, 20% -15%,
+      50% -15%, 50% -15%,
+      80% -15%, 80% -15%;
+  }
+}
+
+/* --- (Keep the Force Override CSS from before) --- */
+/* FORCE OVERRIDES FOR LEFT PANEL */
+
+/* 1. Server Title (Japanese Text) to Pure White */
+#discord-widget h2,
+#discord-widget h1,
+#discord-widget .server-title,
+#discord-widget div[class*="title"] {
+  color: #ffffff !important;
+}
+
+/* 2. Lighten the Inner Header Container Background */
+#discord-widget > div:first-child {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* 3. Online Bots Header to Soft Light Blue */
+#discord-widget h3:nth-of-type(2),
+#discord-widget .category-title:nth-of-type(2),
+#discord-widget div:nth-of-type(2) > h3 {
+  color: #90caf9 !important;
+}
+
+/* 4. Online Members Header to Pure White */
+#discord-widget h3:nth-of-type(3),
+#discord-widget .category-title:nth-of-type(3),
+#discord-widget div:nth-of-type(3) > h3 {
+  color: #ffffff !important;
+}
+
+/* 5. Keep Floating Muffins */
+#widget-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+#widget-wrapper::before {
+  content: "🧁✨";
+  position: absolute;
+  top: 15px;
+  left: 20px;
   font-size: 1.4rem;
   pointer-events: none;
   z-index: 10;
   animation: floatMuffin 4s ease-in-out infinite alternate;
 }
 
-/* Left Muffin */
-#widget-wrapper::before {
-  content: "🧁✨";
-  top: 15px;
-  left: 20px;
-}
-
-/* Right Muffin */
 #widget-wrapper::after {
   content: "✨🧁";
+  position: absolute;
   bottom: 20px;
   right: 25px;
+  font-size: 1.4rem;
+  pointer-events: none;
+  z-index: 10;
+  animation: floatMuffin 4s ease-in-out infinite alternate;
   animation-delay: 2s;
 }
 
 @keyframes floatMuffin {
-  0% {
-    transform: translateY(0px) rotate(-5deg);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-12px) rotate(8deg);
-    opacity: 1;
-  }
+  0% { transform: translateY(0px) rotate(-5deg); opacity: 0.7; }
+  100% { transform: translateY(-12px) rotate(8deg); opacity: 1; }
 }
+/* ... (Your other force overrides here for title colors, etc.) ... */
     
   </style>
 </head>
