@@ -68,44 +68,19 @@ body {
   to { transform: translateY(-15px); }
 }
 
-/* Widget Float Up Animation */
-#widget-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
-  max-width: 1100px;
-  height: 85vh;
-  background-color: rgba(255, 245, 246, 0.92); /* Slightly transparent to see GIF */
-  border: 4px solid #f8bbd0;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px); /* Soft blur effect over GIF */
-  
-  /* Initial hidden state off-screen */
-  transform: translateY(100vh);
-  opacity: 0;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
-}
-
-/* Triggered class to float up */
-#widget-wrapper.slide-up {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-    body {
-      background-color: #fce4ec; /* Soft Sakura Pink */
+  body {
+      background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Quicksand', sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      overflow: hidden;
     }
 
-    /* Outer Container - Two Column Grid */
+    /* Combined Outer Container (Dark Base + Slide Up) */
     #widget-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -113,11 +88,23 @@ body {
       width: 100%;
       max-width: 1100px;
       height: 85vh;
-      background-color: #fff5f6;
-      border: 4px solid #f8bbd0;
+      background-color: rgba(26, 20, 28, 0.92); /* Darkened base */
+      border: 4px solid #4a2e39;
       border-radius: 20px;
       padding: 24px;
-      box-shadow: 0 10px 25px rgba(216, 112, 147, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      color: #f8bbd0;
+      
+      transform: translateY(100vh);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+    }
+
+    /* Triggered class to float up */
+    #widget-wrapper.slide-up {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     /* LEFT SIDE: Widget Main */
@@ -125,10 +112,10 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: #ffffff;
+      background-color: rgba(40, 30, 42, 0.8); /* Darkened panel */
       border-radius: 16px;
       padding: 20px;
-      border: 2px solid #f48fb1;
+      border: 2px solid #4a2e39;
       height: 100%;
       overflow: hidden;
     }
