@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KittyCrumbs</title>
   
+  <!-- Bakery / Sakura Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
   <style>
@@ -352,6 +353,7 @@
   </div>
 
   <div id="widget-wrapper">
+    <!-- LEFT SIDE WIDGET -->
     <div id="discord-widget">
       <div class="widget-header">
         <h3 id="server-name">キティ・クラムズ・ベーカリー</h3>
@@ -361,12 +363,14 @@
         </div>
       </div>
 
+      <!-- Middle Description -->
       <p class="server-desc">
         <i>Hello! Welcome to Kitty Crumbs webpage! We provide services such as QOTD, movie nights, events, and more! Come join us today!</i>
       </p>
 
       <div class="divider"></div>
 
+      <!-- Member Lists -->
       <div class="members-wrapper">
         <div>
           <div class="section-title title-mods">🌸 ᴏɴʟɪɴᴇ ᴍᴏᴅᴇʀᴀᴛᴏʀs 🌸</div>
@@ -384,4 +388,110 @@
 
         <div>
           <div class="section-title title-members">✨ ᴏɴʟɪɴᴇ ᴍᴇᴍʙᴇʀs ✨</div>
-          <ul id="member-list" class="member-grid">
+          <ul id="member-list" class="member-grid"></ul>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Invite Button -->
+      <a id="invite-btn" class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Join Server</a>
+    </div>
+
+    <!-- RIGHT SIDE PANELS -->
+    <div id="right-panel">
+      <a class="feature-card card-qotd server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">QOTD</a>
+      <a class="feature-card card-events server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Events</a>
+      <a class="feature-card card-movies server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Movie-Nights</a>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    const MOD_ROLE_ID = "1528305985519751178";
+    const BOT_ROLE_ID = "1526913039457190050";
+    const REFRESH_INTERVAL = 10000; 
+
+    // Helper function to guarantee loading screen dismissal
+    function hideLoader() {
+      const loader = document.getElementById('loading-screen');
+      const widget = document.getElementById('widget-wrapper');
+      
+      if (loader && !loader.classList.contains('hidden')) {
+        loader.classList.add('hidden');
+        widget.classList.add('slide-up');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    async function loadDiscordWidget() {
+      try {
+        const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
+        const botData = await botResponse.json();
+
+        if (botData.server_name) {
+          document.getElementById('server-name').innerText = botData.server_name;
+        }
+
+        if (botData.total_members !== undefined) {
+          document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
+        }
+
+        const modList = document.getElementById('mod-list');
+        const botList = document.getElementById('bot-list');
+        const memberList = document.getElementById('member-list');
+
+        modList.innerHTML = '';
+        botList.innerHTML = '';
+        memberList.innerHTML = '';
+
+        let onlineCount = 0;
+
+        if (botData.members && Array.isArray(botData.members)) {
+          botData.members.forEach(member => {
+            if (member.status === 'offline') return;
+
+            onlineCount++;
+
+            const li = document.createElement('li');
+            li.className = 'member-item';
+
+            const avatar = document.createElement('img');
+            avatar.src = member.avatar_url;
+            avatar.alt = member.username;
+
+            const name = document.createElement('span');
+            name.innerText = member.display_name || member.username;
+
+            li.appendChild(avatar);
+            li.appendChild(name);
+
+            if (member.roles && member.roles.includes(MOD_ROLE_ID)) {
+              modList.appendChild(li);
+            } else if ((member.roles && member.roles.includes(BOT_ROLE_ID)) || member.bot) {
+              botList.appendChild(li);
+            } else {
+              memberList.appendChild(li);
+            }
+          });
+        }
+
+        document.getElementById('online-count').innerText = `${onlineCount} Online`;
+
+      } catch (e) {
+        console.error('Error fetching bot server data:', e);
+      } finally {
+        // Guarantee the loader hides after 1.5 seconds regardless of success or error
+        setTimeout(hideLoader, 1500);
+      }
+    }
+
+    // Safety fallback: Hide loader after 3 seconds no matter what happens
+    setTimeout(hideLoader, 3000);
+
+    loadDiscordWidget();
+    setInterval(loadDiscordWidget, REFRESH_INTERVAL);
+  </script>
+
+</body>
+</html>
