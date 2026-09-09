@@ -289,17 +289,71 @@ body {
       }
     }
 
-    /* Brighten left panel title and description */
-#discord-widget h2, 
-#discord-widget .description,
-.category-title {
-  color: #ffb7c5 !important; /* Brighter pastel sakura pink */
+ /* Server Title & Left Panel Text Updates */
+.server-title {
+  color: #ffffff !important; /* Server Title: White */
 }
 
-/* Lighten body description text for crisp contrast */
-#discord-widget p {
-  color: #ffffff !important;
-  opacity: 0.9;
+/* Lighten the inner top header container */
+.server-header,
+#discord-widget .header-box {
+  background-color: rgba(255, 255, 255, 0.12) !important; /* Softened inner box */
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* Category Title Color Adjustments */
+.category-title:nth-of-type(1) {
+  color: #ffcdd2 !important; /* Online Moderators: Pink */
+}
+
+.category-title:nth-of-type(2) {
+  color: #90caf9 !important; /* Online Bots: Soft Light Blue */
+}
+
+.category-title:nth-of-type(3) {
+  color: #ffffff !important; /* Online Members: White */
+}
+
+/* Floating Sparkly Muffins Container */
+#widget-wrapper {
+  position: relative;
+  overflow: hidden; /* Keeps floating sparkles contained */
+}
+
+#widget-wrapper::before,
+#widget-wrapper::after {
+  position: absolute;
+  font-size: 1.4rem;
+  pointer-events: none;
+  z-index: 10;
+  animation: floatMuffin 4s ease-in-out infinite alternate;
+}
+
+/* Left Muffin */
+#widget-wrapper::before {
+  content: "🧁✨";
+  top: 15px;
+  left: 20px;
+}
+
+/* Right Muffin */
+#widget-wrapper::after {
+  content: "✨🧁";
+  bottom: 20px;
+  right: 25px;
+  animation-delay: 2s;
+}
+
+@keyframes floatMuffin {
+  0% {
+    transform: translateY(0px) rotate(-5deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-12px) rotate(8deg);
+    opacity: 1;
+  }
 }
     
   </style>
