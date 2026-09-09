@@ -197,7 +197,7 @@ async function loadDiscordWidget() {
 
   // 2. Fetch full member roster & total count from Python backend
   try {
-    const botResponse = await fetch('http://localhost:5000/api/guild-data');
+    const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
     const botData = await botResponse.json();
 
     if (botData.total_members !== undefined) {
