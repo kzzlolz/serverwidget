@@ -17,6 +17,84 @@
       padding: 0;
     }
 
+    /* Body Background with GIF */
+body {
+  background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden; /* Prevents scrollbars during entrance animation */
+}
+
+/* Loading Screen Overlay */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fce4ec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #880e4f;
+  font-weight: bold;
+}
+
+.loader-spinner {
+  font-size: 3rem;
+  animation: bounce 1s infinite alternate;
+  margin-bottom: 10px;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-15px); }
+}
+
+/* Widget Float Up Animation */
+#widget-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  height: 85vh;
+  background-color: rgba(255, 245, 246, 0.92); /* Slightly transparent to see GIF */
+  border: 4px solid #f8bbd0;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px); /* Soft blur effect over GIF */
+  
+  /* Initial hidden state off-screen */
+  transform: translateY(100vh);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+}
+
+/* Triggered class to float up */
+#widget-wrapper.slide-up {
+  transform: translateY(0);
+  opacity: 1;
+}
+
     body {
       background-color: #fce4ec; /* Soft Sakura Pink */
       font-family: 'Quicksand', sans-serif;
@@ -239,6 +317,13 @@
 </head>
 <body>
 
+  <div id="loading-screen">
+  <div class="loader-content">
+    <div class="loader-spinner">🧁</div>
+    <p>Baking the widget...</p>
+  </div>
+</div>
+
   <div id="widget-wrapper">
     <!-- LEFT SIDE WIDGET -->
     <div id="discord-widget">
@@ -351,6 +436,16 @@ async function loadDiscordWidget() {
 
     document.getElementById('online-count').innerText = `${onlineCount} Online`;
 
+    // Dismiss loading screen & trigger float up animation
+    const loader = document.getElementById('loading-screen');
+    const widget = document.getElementById('widget-wrapper');
+    
+    if (loader && !loader.classList.contains('hidden')) {
+      loader.classList.add('hidden');
+      widget.classList.add('slide-up');
+      document.body.style.overflow = 'auto'; // Re-enable scrolling if needed
+    }
+    
   } catch (e) {
     console.error('Error fetching bot server data:', e);
   }
