@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KittyCrumbs</title>
   
-  <!-- Bakery / Sakura Favicon (Cupcake Emoji Icon) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
   <style>
@@ -18,105 +17,112 @@
     }
 
     /* Body Background with GIF */
-/* Body Background with GIF */
-body {
-  background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Quicksand', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  overflow: hidden;
-}
-
-/* Loading Screen Overlay */
-#loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fce4ec;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-#loading-screen.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.loader-content {
-  text-align: center;
-  font-size: 1.5rem;
-  color: #880e4f;
-  font-weight: bold;
-}
-
-.loader-spinner {
-  font-size: 3rem;
-  animation: bounce 1s infinite alternate;
-  margin-bottom: 10px;
-}
-
-@keyframes bounce {
-  from { transform: translateY(0); }
-  to { transform: translateY(-15px); }
-}
-
-/* Outer Container - Soft Warm Mauve Base */
-#widget-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
-  max-width: 1100px;
-  height: 85vh;
-  background-color: rgba(62, 44, 52, 0.88);
-  border: 4px solid #b3889b;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(6px);
-  color: #ffdce5;
-  
-  transform: translateY(100vh);
-  opacity: 0;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
-}
-
-/* Triggered class to float up */
-#widget-wrapper.slide-up {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* LEFT SIDE: Discord Panel */
-#discord-widget {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgba(45, 32, 38, 0.75);
-  border-radius: 16px;
-  padding: 20px;
-  border: 2px solid #8c6375;
-  height: 100%;
-  overflow: hidden;
-}
-    /* Header Styling */
-    .widget-header {
-      text-align: center;
+    body {
+      background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow: hidden;
     }
 
-    .widget-header h3 {
+    /* Loading Screen Overlay */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #fce4ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #880e4f;
+      font-weight: bold;
+    }
+
+    .loader-spinner {
+      font-size: 3rem;
+      animation: bounce 1s infinite alternate;
+      margin-bottom: 10px;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+
+    /* Outer Container Base */
+    #widget-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 1100px;
+      height: 85vh;
+      background-color: rgba(62, 44, 52, 0.88);
+      border: 4px solid #b3889b;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      color: #ffdce5;
+      position: relative;
+      overflow: hidden;
+      
+      transform: translateY(100vh);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+    }
+
+    /* Entrance Animation */
+    #widget-wrapper.slide-up {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* LEFT SIDE: Discord Panel */
+    #discord-widget {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: rgba(45, 32, 38, 0.75);
+      border-radius: 16px;
+      padding: 20px;
+      border: 2px solid #8c6375;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Lighten Inner Top Header Container */
+    .widget-header {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.12) !important;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    /* Title Forced to Pure White */
+    .widget-header h3,
+    #server-name {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #880e4f;
+      color: #ffffff !important;
     }
 
     .stats-container {
@@ -130,7 +136,7 @@ body {
       font-size: 0.95rem;
       font-weight: 700;
       color: #e91e63;
-      background-color: #ffe0b2; /* Soft Bakery Cream */
+      background-color: #ffe0b2;
       padding: 4px 10px;
       border-radius: 12px;
     }
@@ -148,7 +154,8 @@ body {
     .server-desc {
       font-style: italic;
       font-size: 0.85rem;
-      color: #6d4c41; /* Warm Coffee/Bakery Brown */
+      color: #ffffff !important;
+      opacity: 0.95;
       text-align: center;
       margin: 12px 0;
       line-height: 1.4;
@@ -156,7 +163,7 @@ body {
 
     .divider {
       height: 2px;
-      background-color: #f8bbd0;
+      background-color: rgba(248, 187, 208, 0.4);
       margin: 8px 0;
       width: 100%;
     }
@@ -179,9 +186,10 @@ body {
       margin-bottom: 8px;
     }
 
-    .title-mods { color: #d81b60; }
-    .title-bots { color: #7b1fa2; }
-    .title-members { color: #ad1457; }
+    /* Category Titles Color Customizations */
+    .title-mods { color: #f8bbd0 !important; }
+    .title-bots { color: #90caf9 !important; } /* Soft Light Blue */
+    .title-members { color: #ffffff !important; } /* White */
 
     .member-grid {
       list-style: none;
@@ -194,7 +202,7 @@ body {
       display: flex;
       align-items: center;
       gap: 10px;
-      background-color: #fff0f5;
+      background-color: rgba(255, 240, 245, 0.95);
       padding: 8px 12px;
       border-radius: 10px;
       font-size: 0.9rem;
@@ -244,7 +252,7 @@ body {
       align-items: center;
       font-size: 1.5rem;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-decoration: none;
       transition: transform 0.2s ease, filter 0.2s ease;
       cursor: pointer;
@@ -255,7 +263,6 @@ body {
       filter: brightness(1.05);
     }
 
-    /* Pixel Font for QOTD */
     .card-qotd {
       background-color: #ff6b6b;
       color: #ffffff;
@@ -264,19 +271,19 @@ body {
     }
 
     .card-events {
-  background-color: #d4e157;
-  color: #33691e;
-  font-family: 'Pacifico', cursive;
-  font-size: 1.8rem;
-}
+      background-color: #d4e157;
+      color: #33691e;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.8rem;
+    }
 
-.card-movies {
-  background-color: #ba68c8;
-  color: #ffffff;
-  font-family: 'Sacramento', cursive;
-  font-size: 2.2rem;
-  font-weight: bold;
-}
+    .card-movies {
+      background-color: #ba68c8;
+      color: #ffffff;
+      font-family: 'Sacramento', cursive;
+      font-size: 2.2rem;
+      font-weight: bold;
+    }
 
     /* Responsive Mobile Layout */
     @media (max-width: 768px) {
@@ -289,150 +296,62 @@ body {
       }
     }
 
- /* --- Optimized Muffin Rain Configuration --- */
+    /* --- Floating Emoji Rain Across Canvas --- */
+    #widget-wrapper::before {
+      content: "🧁";
+      position: absolute;
+      font-size: 1.5rem;
+      pointer-events: none;
+      z-index: 20;
+      bottom: -40px;
+      left: 15%;
+      filter: 
+        drop-shadow(120px -80px 0 rgba(255, 255, 255, 0.9)) 
+        drop-shadow(260px 40px 0 rgba(255, 255, 255, 0.9))
+        drop-shadow(400px -150px 0 rgba(255, 255, 255, 0.9));
+      animation: floatUpSlow 7s linear infinite;
+    }
 
-/* 1. Muffin container and background setup */
-#widget-wrapper {
-  position: relative;
-  overflow: hidden; /* Contains the rising muffins */
-}
+    #widget-wrapper::after {
+      content: "✨🧁";
+      position: absolute;
+      font-size: 1.3rem;
+      pointer-events: none;
+      z-index: 20;
+      bottom: -40px;
+      left: 55%;
+      filter: 
+        drop-shadow(150px -120px 0 rgba(255, 255, 255, 0.9)) 
+        drop-shadow(300px -30px 0 rgba(255, 255, 255, 0.9));
+      animation: floatUpFast 5s linear infinite;
+      animation-delay: 2.5s;
+    }
 
-/* 2. Style the muffins (using a pseudo-element) */
-#widget-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Allows clicks to pass through */
-  z-index: 5; /* Puts them in front of the background, behind text */
-  opacity: 0.8; /* Subtle transparency */
-  
-  /* Create multiple muffins using layered radial gradients.
-     Each gradient draws one "🧁✨" shape. */
-  background-image: 
-    /* Pattern: gradient(size, color/content at x% y%) */
-    radial-gradient(circle, #f8bbd0 2px, transparent 3px), /* Sparkle */
-    radial-gradient(circle, #ffe0e9 12px, transparent 13px), /* Muffin 1 */
-    
-    radial-gradient(circle, #f8bbd0 2px, transparent 3px), /* Sparkle */
-    radial-gradient(circle, #ffe0e9 12px, transparent 13px), /* Muffin 2 */
-    
-    radial-gradient(circle, #f8bbd0 2px, transparent 3px), /* Sparkle */
-    radial-gradient(circle, #ffe0e9 12px, transparent 13px); /* Muffin 3 */
+    @keyframes floatUpSlow {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.85; }
+      90% { opacity: 0.85; }
+      100% { transform: translateY(-90vh) rotate(20deg); opacity: 0; }
+    }
 
-  /* Define positions for the initial state of the muffins (bottom of the widget) */
-  background-position: 
-    20% 100%, 20% 100%, /* Sparkle/Muffin 1 */
-    50% 100%, 50% 100%, /* Sparkle/Muffin 2 */
-    80% 100%, 80% 100%; /* Sparkle/Muffin 3 */
-    
-  background-repeat: no-repeat;
-  background-size: 24px 24px; /* Size of individual muffins */
-
-  /* Trigger the float animation */
-  animation: muffinRain 8s linear infinite;
-}
-
-/* 3. Define the floating animation */
-@keyframes muffinRain {
-  0% {
-    /* Start positions at the bottom, just off-screen */
-    background-position: 
-      20% 105%, 20% 105%,
-      50% 105%, 50% 105%,
-      80% 105%, 80% 105%;
-  }
-  100% {
-    /* End positions at the top, floating off-screen */
-    background-position: 
-      20% -15%, 20% -15%,
-      50% -15%, 50% -15%,
-      80% -15%, 80% -15%;
-  }
-}
-
-/* --- (Keep the Force Override CSS from before) --- */
-/* FORCE OVERRIDES FOR LEFT PANEL */
-
-/* 1. Server Title (Japanese Text) to Pure White */
-#discord-widget h2,
-#discord-widget h1,
-#discord-widget .server-title,
-#discord-widget div[class*="title"] {
-  color: #ffffff !important;
-}
-
-/* 2. Lighten the Inner Header Container Background */
-#discord-widget > div:first-child {
-  background-color: rgba(255, 255, 255, 0.12) !important;
-  border-radius: 12px;
-  padding: 10px;
-}
-
-/* 3. Online Bots Header to Soft Light Blue */
-#discord-widget h3:nth-of-type(2),
-#discord-widget .category-title:nth-of-type(2),
-#discord-widget div:nth-of-type(2) > h3 {
-  color: #90caf9 !important;
-}
-
-/* 4. Online Members Header to Pure White */
-#discord-widget h3:nth-of-type(3),
-#discord-widget .category-title:nth-of-type(3),
-#discord-widget div:nth-of-type(3) > h3 {
-  color: #ffffff !important;
-}
-
-/* 5. Keep Floating Muffins */
-#widget-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-#widget-wrapper::before {
-  content: "🧁✨";
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  font-size: 1.4rem;
-  pointer-events: none;
-  z-index: 10;
-  animation: floatMuffin 4s ease-in-out infinite alternate;
-}
-
-#widget-wrapper::after {
-  content: "✨🧁";
-  position: absolute;
-  bottom: 20px;
-  right: 25px;
-  font-size: 1.4rem;
-  pointer-events: none;
-  z-index: 10;
-  animation: floatMuffin 4s ease-in-out infinite alternate;
-  animation-delay: 2s;
-}
-
-@keyframes floatMuffin {
-  0% { transform: translateY(0px) rotate(-5deg); opacity: 0.7; }
-  100% { transform: translateY(-12px) rotate(8deg); opacity: 1; }
-}
-/* ... (Your other force overrides here for title colors, etc.) ... */
-    
+    @keyframes floatUpFast {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.9; }
+      85% { opacity: 0.9; }
+      100% { transform: translateY(-90vh) rotate(-25deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
 
   <div id="loading-screen">
-  <div class="loader-content">
-    <div class="loader-spinner">🧁</div>
-    <p>Baking the widget...</p>
+    <div class="loader-content">
+      <div class="loader-spinner">🧁</div>
+      <p>Baking the widget...</p>
+    </div>
   </div>
-</div>
 
   <div id="widget-wrapper">
-    <!-- LEFT SIDE WIDGET -->
     <div id="discord-widget">
       <div class="widget-header">
         <h3 id="server-name">キティ・クラムズ・ベーカリー</h3>
@@ -442,14 +361,12 @@ body {
         </div>
       </div>
 
-      <!-- Middle Description -->
       <p class="server-desc">
         <i>Hello! Welcome to Kitty Crumbs webpage! We provide services such as QOTD, movie nights, events, and more! Come join us today!</i>
       </p>
 
       <div class="divider"></div>
 
-      <!-- Member Lists -->
       <div class="members-wrapper">
         <div>
           <div class="section-title title-mods">🌸 ᴏɴʟɪɴᴇ ᴍᴏᴅᴇʀᴀᴛᴏʀs 🌸</div>
@@ -467,103 +384,4 @@ body {
 
         <div>
           <div class="section-title title-members">✨ ᴏɴʟɪɴᴇ ᴍᴇᴍʙᴇʀs ✨</div>
-          <ul id="member-list" class="member-grid"></ul>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- Small Rectangular Button -->
-      <a id="invite-btn" class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Join Server</a>
-    </div>
-
-    <!-- RIGHT SIDE PANELS -->
-    <div id="right-panel">
-      <a class="feature-card card-qotd server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">QOTD</a>
-      <a class="feature-card card-events server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Events</a>
-      <a class="feature-card card-movies server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Movie-Nights</a>
-    </div>
-  </div>
-
-  <!-- JavaScript Logic -->
-  <script>
-const MOD_ROLE_ID = "1528305985519751178";
-const BOT_ROLE_ID = "1526913039457190050";
-const REFRESH_INTERVAL = 10000; 
-
-async function loadDiscordWidget() {
-  try {
-    const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
-    const botData = await botResponse.json();
-
-    if (botData.server_name) {
-      document.getElementById('server-name').innerText = botData.server_name;
-    }
-
-    if (botData.total_members !== undefined) {
-      document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
-    }
-
-    const modList = document.getElementById('mod-list');
-    const botList = document.getElementById('bot-list');
-    const memberList = document.getElementById('member-list');
-
-    modList.innerHTML = '';
-    botList.innerHTML = '';
-    memberList.innerHTML = '';
-
-    let onlineCount = 0;
-
-    botData.members.forEach(member => {
-      if (member.status === 'offline') return;
-
-      onlineCount++;
-
-      const li = document.createElement('li');
-      li.className = 'member-item';
-
-      const avatar = document.createElement('img');
-      avatar.src = member.avatar_url;
-      avatar.alt = member.username;
-
-      const name = document.createElement('span');
-      name.innerText = member.display_name || member.username;
-
-      li.appendChild(avatar);
-      li.appendChild(name);
-
-      if (member.roles.includes(MOD_ROLE_ID)) {
-        modList.appendChild(li);
-      } else if (member.roles.includes(BOT_ROLE_ID) || member.bot) {
-        botList.appendChild(li);
-      } else {
-        memberList.appendChild(li);
-      }
-    });
-
-    document.getElementById('online-count').innerText = `${onlineCount} Online`;
-
-    // --- REPLACE THE LOADER DISMISSAL CODE WITH THIS ---
-    const loader = document.getElementById('loading-screen');
-    const widget = document.getElementById('widget-wrapper');
-    
-    if (loader && !loader.classList.contains('hidden')) {
-      // Hold the loading screen for 1.5 seconds (1500ms) so the animation plays smoothly
-      setTimeout(() => {
-        loader.classList.add('hidden');
-        widget.classList.add('slide-up');
-        document.body.style.overflow = 'auto';
-      }, 1500); 
-    }
-    
-  } catch (e) {
-    console.error('Error fetching bot server data:', e);
-  }
-}
-
-loadDiscordWidget();
-setInterval(loadDiscordWidget, REFRESH_INTERVAL);
-  </script>
-
-</body>
-</html>
+          <ul id="member-list" class="member-grid">
