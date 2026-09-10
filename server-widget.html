@@ -487,16 +487,19 @@
 
         document.getElementById('online-count').innerText = `${onlineCount} Online`;
 
+        // Hide the loader *immediately* once data is successfully loaded!
+        hideLoader();
+
       } catch (e) {
         console.error('Error fetching bot server data:', e);
       } finally {
-        // Guarantee the loader hides after 1.5 seconds regardless of success or error
+        // Fallback inside finally just in case
         setTimeout(hideLoader, 1500);
       }
     }
 
-    // Safety fallback: Hide loader after 3 seconds no matter what happens
-    setTimeout(hideLoader, 3000);
+    // Ultimate safety fallback: Force hide loader after 7 seconds no matter what
+    setTimeout(hideLoader, 7000);
 
     loadDiscordWidget();
     setInterval(loadDiscordWidget, REFRESH_INTERVAL);
