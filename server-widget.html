@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kitty Crumbs Bakery</title>
   
+  <!-- Bakery / Sakura Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
+  <!-- Discord & Social Media Preview Card Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="🌸 Kitty Crumbs Bakery 🧁">
   <meta property="og:description" content="Welcome to Kitty Crumbs! Explore our server dashboard, live roster, rules, music, and events!">
   <meta property="og:image" content="https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif">
   <meta name="theme-color" content="#f8bbd0">
   
+  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&family=Press+Start+2P&family=Sacramento&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&family=Sacramento&display=swap');
 
     * {
       box-sizing: border-box;
@@ -118,10 +121,23 @@
     .sidebar-brand {
       text-align: center;
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #f8bbd0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .sidebar-brand h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #fff;
       font-weight: 600;
     }
@@ -381,52 +397,69 @@
     .events-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 14px;
       max-height: 390px;
       overflow-y: auto;
+      padding-right: 4px;
     }
 
     .feature-card {
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px 24px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      gap: 16px;
       text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
       border: none;
       width: 100%;
-      text-align: center;
+      text-align: left;
     }
 
     .feature-card:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.05);
+      transform: translateY(-3px);
+      filter: brightness(1.06);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .feature-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .feature-text-content h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .feature-text-content p {
+      font-size: 0.82rem;
+      opacity: 0.9;
     }
 
     .card-qotd {
-      background-color: #ff6b6b;
+      background: linear-gradient(135deg, #ff7675, #fab1a0);
       color: #ffffff;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.9rem;
     }
 
     .card-events {
-      background-color: #d4e157;
-      color: #33691e;
-      font-family: 'Pacifico', cursive;
-      font-size: 1.4rem;
+      background: linear-gradient(135deg, #a29bfe, #74b9ff);
+      color: #ffffff;
     }
 
     .card-movies {
-      background-color: #ba68c8;
+      background: linear-gradient(135deg, #fd79a8, #e84393);
       color: #ffffff;
-      font-family: 'Sacramento', cursive;
-      font-size: 1.8rem;
-      font-weight: bold;
     }
 
     /* --- POPUP MODAL STYLES --- */
@@ -519,6 +552,28 @@
       margin-top: auto;
     }
 
+    /* Hover Pop Effect for ALL Discord Buttons */
+    .server-invite-link {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: #f48fb1;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 11px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(244, 143, 177, 0.3);
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .server-invite-link:hover {
+      transform: translateY(-2px);
+      background-color: #f06292;
+      box-shadow: 0 6px 15px rgba(240, 98, 146, 0.4);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       #widget-wrapper {
@@ -581,6 +636,7 @@
 </head>
 <body>
 
+  <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loader-content">
       <div class="loader-spinner">🧁</div>
@@ -589,6 +645,7 @@
     </div>
   </div>
 
+  <!-- POPUP MODALS -->
   <div id="rule-modal" class="modal-overlay" onclick="closeModalOnOutside(event)">
     <div class="modal-box">
       <div class="modal-header">
@@ -596,18 +653,22 @@
         <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body" id="modal-content-area">
-        </div>
+        <!-- Dynamically injected rules -->
+      </div>
       <div class="footer-action">
-        <a class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener" style="display: block; width: 100%; text-align: center; background-color: #f48fb1; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;">Join Discord Server</a>
+        <a class="server-invite-link" id="modal-invite-btn" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Join Discord Server</a>
       </div>
     </div>
   </div>
 
+  <!-- Main Container -->
   <div id="widget-wrapper">
     
+    <!-- SIDEBAR -->
     <div class="sidebar">
       <div>
         <div class="sidebar-brand">
+          <img src="https://i.ibb.co/tTND3MRX/Untitled-design.png" alt="Kitty Crumbs Logo" class="sidebar-logo">
           <h2 id="brand-title">Kitty Crumbs</h2>
         </div>
         <div class="nav-links">
@@ -618,6 +679,7 @@
       </div>
 
       <div>
+        <!-- Integrated Lofi Music Player Widget -->
         <div class="lofi-widget">
           <div class="lofi-title">🎵 Bakery Lofi Beats</div>
           <div class="lofi-controls">
@@ -626,14 +688,17 @@
           <audio id="lofi-audio" loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
         </div>
         
+        <!-- Version Tracker -->
         <div style="text-align: center; font-size: 0.7rem; opacity: 0.5; margin-top: 10px;">
-          Kitty Crumbs v1.4 🧁
+          Kitty Crumbs v1.5 🧁
         </div>
       </div>
     </div>
 
+    <!-- CONTENT PANELS -->
     <div class="content-area">
 
+      <!-- TAB 1: HOME / LIVE ROSTER -->
       <div id="home-tab" class="tab-pane active">
         <div class="dash-header">
           <h3 id="server-name">Kitty Crumbs Bakery</h3>
@@ -669,10 +734,11 @@
         </div>
 
         <div class="footer-action">
-          <a id="invite-btn" class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener" style="display: block; width: 100%; text-align: center; background-color: #f48fb1; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;">Join Discord Server</a>
+          <a id="invite-btn" class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Join Discord Server</a>
         </div>
       </div>
 
+      <!-- TAB 2: BAKERY RULES -->
       <div id="rules-tab" class="tab-pane">
         <div class="dash-header">
           <h3>Bakery Rules</h3>
@@ -704,27 +770,53 @@
             <div class="accordion-content">No NSFW content or NSFW comments about other content, users, or applicable things.</div>
           </div>
           <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">7. Impersonation & TOS <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="accordion-content">No impersonating other staff members or users. Follow Discord's Terms of Service at all times. Failure to follow these rules will result in punishment.</div>
+            <div class="accordion-header" onclick="toggleAccordion(this)">7. Impersonation <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="accordion-content">No impersonating other staff members or users under any circumstances.</div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">8. Discord Terms of Service (TOS) <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="accordion-content">Follow Discord's Terms of Service at all times. Failure to follow these rules will result in punishment.</div>
           </div>
         </div>
       </div>
 
+      <!-- TAB 3: EVENTS & CARDS -->
       <div id="events-tab" class="tab-pane">
         <div class="dash-header">
           <h3>Events & Activities</h3>
           <span class="stat-badge-total">Click for Rules</span>
         </div>
         <div class="events-grid">
-          <button class="feature-card card-qotd" onclick="openModal('qotd')">QOTD (Question of the Day)</button>
-          <button class="feature-card card-events" onclick="openModal('events')">Community Events</button>
-          <button class="feature-card card-movies" onclick="openModal('movies')">Movie-Nights</button>
+          <button class="feature-card card-qotd" onclick="openModal('qotd')">
+            <div class="feature-icon-box"><i class="fa-solid fa-comments"></i></div>
+            <div class="feature-text-content">
+              <h4>Sweet QOTD Chatter</h4>
+              <p>Daily questions, engaging conversations & fun thoughts!</p>
+            </div>
+          </button>
+          
+          <button class="feature-card card-events" onclick="openModal('events')">
+            <div class="feature-icon-box"><i class="fa-solid fa-trophy"></i></div>
+            <div class="feature-text-content">
+              <h4>Community Events & Minigames</h4>
+              <p>Win exclusive rewards, prizes & take part in fun activities!</p>
+            </div>
+          </button>
+          
+          <button class="feature-card card-movies" onclick="openModal('movies')">
+            <div class="feature-icon-box"><i class="fa-solid fa-film"></i></div>
+            <div class="feature-text-content">
+              <h4>Cozy Movie Nights</h4>
+              <p>Grab your popcorn and stream films together with everyone!</p>
+            </div>
+          </button>
         </div>
       </div>
 
     </div>
   </div>
 
+  <!-- JavaScript Logic -->
   <script>
     const MOD_ROLE_ID = "1528305985519751178";
     const BOT_ROLE_ID = "1526913039457190050";
@@ -732,11 +824,12 @@
 
     let globalMembersData = { mods: [], bots: [], members: [] };
 
-    // Rule sets for modals with specific invite links
+    // Rule sets for modals with customized button text & invite links
     const ruleData = {
       qotd: {
         title: "QOTD Rules",
         inviteUrl: "https://discord.gg/8waS8YxVu9",
+        buttonText: "Join answering questions!",
         html: `
           <ul>
             <li>You may type any answer based on the topic and question that was given.</li>
@@ -750,6 +843,7 @@
       events: {
         title: "Events Rules",
         inviteUrl: "https://discord.gg/8aTFtqX6Rx",
+        buttonText: "Start playing fun events!",
         html: `
           <ul>
             <li>You may participate in events hosted by the @Events Host.</li>
@@ -764,6 +858,7 @@
       movies: {
         title: "Movie Night Rules",
         inviteUrl: "https://discord.gg/MWD8EDzkzh",
+        buttonText: "An immersive experience awaits you...",
         html: `
           <ul>
             <li>No spamming or sending bulky messages.</li>
@@ -783,15 +878,15 @@
       const modal = document.getElementById('rule-modal');
       const titleEl = document.getElementById('modal-title');
       const contentEl = document.getElementById('modal-content-area');
+      const inviteLinkEl = document.getElementById('modal-invite-btn');
       
       if (ruleData[type]) {
         titleEl.innerText = ruleData[type].title;
         contentEl.innerHTML = ruleData[type].html;
         
-        // Dynamically update the invite button link based on the selected card
-        const inviteLinkEl = modal.querySelector('.server-invite-link');
         if (inviteLinkEl && ruleData[type].inviteUrl) {
           inviteLinkEl.href = ruleData[type].inviteUrl;
+          inviteLinkEl.innerText = ruleData[type].buttonText;
         }
 
         modal.classList.add('active');
@@ -808,7 +903,6 @@
       }
     }
 
-    // Close modal with the Escape key
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeModal();
@@ -937,12 +1031,10 @@
       } catch (e) {
         console.error('Error fetching bot server data:', e);
       } finally {
-        // Safety timeout to dismiss loader even if fetch is slow
         setTimeout(hideLoader, 3000);
       }
     }
 
-    // Ultimate safety fallback: Force hide loader after 12 seconds max so you never get stuck
     setTimeout(hideLoader, 12000);
 
     loadDiscordWidget();
