@@ -477,6 +477,7 @@
       border-bottom: 2px solid rgba(248, 187, 208, 0.3);
       padding-bottom: 12px;
       margin-bottom: 15px;
+      position: relative; /* Ensures it stays clean */
     }
 
     .modal-header h3 {
@@ -488,8 +489,10 @@
       background: transparent;
       border: none;
       color: #ffdce5;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       cursor: pointer;
+      padding: 4px 8px; /* Gives it a larger clickable target area */
+      line-height: 1;
     }
 
     .modal-close:hover {
@@ -823,6 +826,13 @@
       }
     }
 
+    // Close modal with the Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+    
     // Tab Navigation Switcher
     function switchTab(tabId, btnElement) {
       document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
