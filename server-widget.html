@@ -845,4 +845,109 @@
         audio.play().catch(e => console.log("Audio play blocked:", e));
         icon.className = "fa-solid fa-pause";
       } else {
-        audio.pause
+        audio.pause();
+        icon.className = "fa-solid fa-play";
+      }
+    }
+
+    // Search / Filter Members Function
+    function filterMembers() {
+      const query = document.getElementById('member-search').value.toLowerCase();
+      renderLists(globalMembersData, query);
+    }
+
+    function hideLoader() {
+      const loader = document.getElementById('loading-screen');
+      const widget = document.getElementById('widget-wrapper');
+      
+      if (loader && !loader.classList.contains('hidden')) {
+        loader.classList.add('hidden');
+      }
+      if (widget) {
+        widget.classList.add('slide-up');
+      }
+    }
+
+    function renderLists(data, filterQuery = '') {
+      const modList = document.getElementById('mod-list');
+      const botList = document.getElementById('bot-list');
+      const memberList = document.getElementById('member-list');
+
+      modList.innerHTML = '';
+      botList.innerHTML = '';
+      memberList.innerHTML = '';
+
+      let onlineCount = 0;
+
+      const appendItem = (listElement, member) => {
+        const nameText = (member.display_name || member.username).toLowerCase();
+        if (filterQuery && !nameText.includes(filterQuery)) return;
+
+        const li = document.createElement('li');
+        li.className = 'member-item';
+
+        const avatar = document.createElement('img');
+        avatar.src = member.avatar_url;
+        avatar.alt = member.username;
+
+        const name = document.createElement('span');
+        name.innerText = member.display_name || member.username;
+
+        li.appendChild(avatar);
+        li.appendChild(name);
+        listElement.appendChild(li);
+      };
+
+      data.members.forEach(member => {
+        if (member.status === 'offline') return;
+        onlineCount++;
+
+        if (member.roles && member.roles.includes(MOD_ROLE_ID)) {
+          appendItem(modList, member);
+        } else if ((member.roles && member.roles.includes(BOT_ROLE_ID)) || member.bot) {
+          appendItem(botList, member);
+        } else {
+          appendItem(memberList, member);
+        }
+      });
+
+      document.getElementById('online-count').innerText = `${onlineCount} Online`;
+    }
+
+    async function loadDiscordWidget() {
+      try {
+        const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
+        const botData = await botResponse.json();
+
+        if (botData.server_name) {
+          document.getElementById('server-name').innerText = botData.server_name;
+          document.getElementById('brand-title').innerText = botData.server_name;
+        }
+
+        if (botData.total_members !== undefined) {
+          document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
+        }
+
+        if (botData.members && Array.isArray(botData.members)) {
+          globalMembersData = botData;
+          filterMembers();
+        }
+
+        hideLoader();
+      } catch (e) {
+        console.error('Error fetching bot server data:', e);
+      } finally {
+        // Safety timeout to dismiss loader even if fetch is slow
+        setTimeout(hideLoader, 3000);
+      }
+    }
+
+    // Ultimate safety fallback: Force hide loader after 12 seconds max so you never get stuck
+    setTimeout(hideLoader, 12000);
+
+    loadDiscordWidget();
+    setInterval(loadDiscordWidget, REFRESH_INTERVAL);
+  </script>
+
+</body>
+</html>
