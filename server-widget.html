@@ -632,6 +632,27 @@
       85% { opacity: 0.9; }
       100% { transform: translateY(-90vh) rotate(-25deg); opacity: 0; }
     }
+
+    /* Mobile Portrait Warning Banner */
+.mobile-rotate-warning {
+  display: none;
+  background-color: #ffe0b2;
+  color: #880e4f;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-bottom: 2px solid #f8bbd0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .mobile-rotate-warning {
+    display: flex;
+  }
+}
   </style>
 </head>
 <body>
@@ -663,6 +684,11 @@
 
   <!-- Main Container -->
   <div id="widget-wrapper">
+
+    <!-- 📱 Mobile Rotate Warning Banner -->
+    <div class="mobile-rotate-warning">
+      <i class="fa-solid fa-mobile-screen-button fa-rotate-90"></i> Tip: Rotate your phone sideways for a cozier view! ✨
+    </div>
     
     <!-- SIDEBAR -->
     <div class="sidebar">
