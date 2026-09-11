@@ -19,9 +19,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Press+Start+2P&family=Quicksand:wght@500;700&family=Sacramento&display=swap');
-
-    * {
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&family=Press+Start+2P&family=Sacramento&display=swap');
+    
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -30,7 +29,7 @@
     body {
       background: url("https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif") no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Fredoka', sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -600,6 +599,7 @@
     <div class="loader-content">
       <div class="loader-spinner">🧁</div>
       <p>Baking the webpage...</p>
+      <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">Note: Service might still be waking up, please be patient! 💤</p>
     </div>
   </div>
 
@@ -746,7 +746,7 @@
   <script>
     const MOD_ROLE_ID = "1528305985519751178";
     const BOT_ROLE_ID = "1526913039457190050";
-    const REFRESH_INTERVAL = 10000; 
+    const REFRESH_INTERVAL = 5000; 
 
     let globalMembersData = { mods: [], bots: [], members: [] };
 
@@ -755,7 +755,6 @@
       qotd: {
         title: "QOTD Rules",
         html: `
-          <p>✨ <strong>How to join:</strong> You can obtain the <strong>@QOTD Participant</strong> role in the ⁠👤-roles channel.</p>
           <ul>
             <li>You may type any answer based on the topic and question that was given.</li>
             <li>Do not make fun of others because of their answers. Let everyone type what they want.</li>
@@ -768,7 +767,6 @@
       events: {
         title: "Events Rules",
         html: `
-          <p>🎉 <strong>How to join:</strong> You can obtain the <strong>@Events Participant</strong> role in the ⁠👤-roles channel.</p>
           <ul>
             <li>You may participate in events hosted by the @Events Host.</li>
             <li>No harassing other members, especially staff members and the Event Host.</li>
@@ -782,7 +780,6 @@
       movies: {
         title: "Movie Night Rules",
         html: `
-          <p>🎬 <strong>How to join:</strong> You can obtain the <strong>@Movie-Night Watcher</strong> role in the ⁠👤-roles channel.</p>
           <ul>
             <li>No spamming or sending bulky messages.</li>
             <li><strong>No spoiling of the movie</strong> (You will be muted for a week!).</li>
@@ -944,6 +941,14 @@
       }
     }
 
+    // Change loading text if Render is taking a minute to wake up
+setTimeout(() => {
+  const loaderText = document.querySelector('.loader-content p');
+  if (loaderText && !document.getElementById('loading-screen').classList.contains('hidden')) {
+    loaderText.innerText = "Waking up the bakery server (Render is spinning up)...";
+  }
+}, 4000);
+    
     setTimeout(hideLoader, 15000);
 
     loadDiscordWidget();
