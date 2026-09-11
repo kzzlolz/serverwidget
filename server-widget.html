@@ -760,6 +760,7 @@
     const ruleData = {
       qotd: {
         title: "QOTD Rules",
+        inviteUrl: "https://discord.gg/8waS8YxVu9", // Specific QOTD invite
         html: `
           <ul>
             <li>You may type any answer based on the topic and question that was given.</li>
@@ -772,6 +773,7 @@
       },
       events: {
         title: "Events Rules",
+        inviteUrl: "https://discord.gg/8aTFtqX6Rx", // Specific Events invite
         html: `
           <ul>
             <li>You may participate in events hosted by the @Events Host.</li>
@@ -785,6 +787,7 @@
       },
       movies: {
         title: "Movie Night Rules",
+        inviteUrl: "https://discord.gg/MWD8EDzkzh", // Specific Movie-Night invite
         html: `
           <ul>
             <li>No spamming or sending bulky messages.</li>
@@ -804,21 +807,19 @@
       const modal = document.getElementById('rule-modal');
       const titleEl = document.getElementById('modal-title');
       const contentEl = document.getElementById('modal-content-area');
+      const modalInviteBtn = document.getElementById('modal-invite-btn'); // Make sure to add an ID to the button in HTML
       
       if (ruleData[type]) {
         titleEl.innerText = ruleData[type].title;
         contentEl.innerHTML = ruleData[type].html;
+        
+        // Change the invite button link dynamically based on the modal type!
+        const inviteLinkEl = modal.querySelector('.server-invite-link');
+        if (inviteLinkEl && ruleData[type].inviteUrl) {
+          inviteLinkEl.href = ruleData[type].inviteUrl;
+        }
+
         modal.classList.add('active');
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('rule-modal').classList.remove('active');
-    }
-
-    function closeModalOnOutside(event) {
-      if (event.target.id === 'rule-modal') {
-        closeModal();
       }
     }
 
