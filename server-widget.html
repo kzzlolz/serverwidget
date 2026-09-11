@@ -34,8 +34,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 15px;
-      overflow: hidden;
+      padding: 20px;
+      overflow: auto; /* Changed from hidden so it never traps the page */
     }
 
     /* Loading Screen Overlay */
@@ -82,8 +82,9 @@
       grid-template-columns: 240px 1fr;
       gap: 20px;
       width: 100%;
-      max-width: 1200px;
-      height: 88vh;
+      max-width: 1100px;
+      /* Removed fixed height 88vh so it scales naturally without clipping */
+      min-height: 600px;
       background-color: rgba(62, 44, 52, 0.9);
       border: 4px solid #b3889b;
       border-radius: 20px;
@@ -92,11 +93,10 @@
       backdrop-filter: blur(8px);
       color: #ffdce5;
       position: relative;
-      overflow: hidden;
       
-      transform: translateY(100vh);
+      transform: translateY(30px); /* Changed from 100vh so it's a softer entrance */
       opacity: 0;
-      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+      transition: transform 0.6s ease, opacity 0.6s ease;
     }
 
     #widget-wrapper.slide-up {
