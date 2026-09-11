@@ -20,7 +20,8 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&family=Press+Start+2P&family=Sacramento&display=swap');
-    
+
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -35,7 +36,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      overflow: auto; /* Changed from hidden so it never traps the page */
+      overflow: auto;
     }
 
     /* Loading Screen Overlay */
@@ -56,6 +57,7 @@
     #loading-screen.hidden {
       opacity: 0;
       visibility: hidden;
+      pointer-events: none;
     }
 
     .loader-content {
@@ -63,6 +65,7 @@
       font-size: 1.5rem;
       color: #880e4f;
       font-weight: bold;
+      padding: 20px;
     }
 
     .loader-spinner {
@@ -83,7 +86,6 @@
       gap: 20px;
       width: 100%;
       max-width: 1100px;
-      /* Removed fixed height 88vh so it scales naturally without clipping */
       min-height: 600px;
       background-color: rgba(62, 44, 52, 0.9);
       border: 4px solid #b3889b;
@@ -93,8 +95,9 @@
       backdrop-filter: blur(8px);
       color: #ffdce5;
       position: relative;
+      overflow: hidden;
       
-      transform: translateY(30px); /* Changed from 100vh so it's a softer entrance */
+      transform: translateY(20px);
       opacity: 0;
       transition: transform 0.6s ease, opacity 0.6s ease;
     }
@@ -123,7 +126,7 @@
     .sidebar-brand h2 {
       font-size: 1.2rem;
       color: #fff;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .nav-links {
@@ -138,9 +141,9 @@
       color: #ffdce5;
       padding: 10px 14px;
       text-align: left;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Fredoka', sans-serif;
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 600;
       border-radius: 10px;
       cursor: pointer;
       display: flex;
@@ -199,16 +202,16 @@
       border-radius: 14px;
       border: 2px solid #8c6375;
       padding: 20px;
-      overflow-y: auto;
       display: flex;
       flex-direction: column;
       position: relative;
+      min-height: 520px;
     }
 
     .tab-pane {
       display: none;
       flex-direction: column;
-      height: 100%;
+      flex-grow: 1;
     }
 
     .tab-pane.active {
@@ -227,7 +230,7 @@
     }
 
     .dash-header h3 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: #fff;
     }
 
@@ -238,7 +241,7 @@
 
     .stat-badge {
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 600;
       color: #e91e63;
       background-color: #ffe0b2;
       padding: 4px 10px;
@@ -247,7 +250,7 @@
 
     .stat-badge-total {
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 600;
       color: #d81b60;
       background-color: #f8bbd0;
       padding: 4px 10px;
@@ -268,7 +271,7 @@
       border-radius: 8px;
       padding: 8px 12px;
       color: white;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Fredoka', sans-serif;
       outline: none;
     }
 
@@ -278,16 +281,18 @@
 
     .members-wrapper {
       flex-grow: 1;
+      max-height: 330px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 14px;
       padding-right: 4px;
+      margin-bottom: 12px;
     }
 
     .section-title {
       font-size: 0.9rem;
-      font-weight: bold;
+      font-weight: 600;
       letter-spacing: 1px;
       margin-bottom: 6px;
     }
@@ -334,6 +339,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      max-height: 390px;
       overflow-y: auto;
       padding-right: 4px;
     }
@@ -351,7 +357,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: bold;
+      font-weight: 600;
       color: #fff;
     }
 
@@ -379,6 +385,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
+      max-height: 390px;
       overflow-y: auto;
     }
 
@@ -407,7 +414,7 @@
       background-color: #ff6b6b;
       color: #ffffff;
       font-family: 'Press Start 2P', monospace;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .card-events {
@@ -508,9 +515,9 @@
       gap: 6px;
     }
 
-    /* Invite Button row inside tabs & Modals */
+    /* Invite Button styling */
     .footer-action {
-      margin-top: 12px;
+      margin-top: auto;
     }
 
     #invite-btn {
@@ -523,7 +530,7 @@
       padding: 10px;
       border-radius: 8px;
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 600;
       transition: background-color 0.2s ease;
     }
 
@@ -536,7 +543,6 @@
       #widget-wrapper {
         grid-template-columns: 1fr;
         height: auto;
-        max-height: 92vh;
       }
       .sidebar {
         flex-direction: row;
@@ -614,7 +620,7 @@
         <!-- Dynamically injected rules -->
       </div>
       <div class="footer-action">
-        <a class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener" style="display: block; width: 100%; text-align: center; background-color: #f48fb1; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 0.95rem; font-weight: 700;">Join Discord Server</a>
+        <a class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener" style="display: block; width: 100%; text-align: center; background-color: #f48fb1; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;">Join Discord Server</a>
       </div>
     </div>
   </div>
@@ -750,7 +756,7 @@
 
     let globalMembersData = { mods: [], bots: [], members: [] };
 
-    // Rule sets for modals
+    // Rule sets for modals (clean format without role prompts)
     const ruleData = {
       qotd: {
         title: "QOTD Rules",
@@ -863,8 +869,9 @@
       
       if (loader && !loader.classList.contains('hidden')) {
         loader.classList.add('hidden');
+      }
+      if (widget) {
         widget.classList.add('slide-up');
-        document.body.style.overflow = 'auto';
       }
     }
 
@@ -937,19 +944,13 @@
       } catch (e) {
         console.error('Error fetching bot server data:', e);
       } finally {
-        setTimeout(hideLoader, 1500);
+        // Safety timeout to dismiss loader even if fetch is slow
+        setTimeout(hideLoader, 3000);
       }
     }
 
-    // Change loading text if Render is taking a minute to wake up
-setTimeout(() => {
-  const loaderText = document.querySelector('.loader-content p');
-  if (loaderText && !document.getElementById('loading-screen').classList.contains('hidden')) {
-    loaderText.innerText = "Waking up the bakery server (Render is spinning up)...";
-  }
-}, 4000);
-    
-    setTimeout(hideLoader, 15000);
+    // Ultimate safety fallback: Force hide loader after 5 seconds max so you never get stuck
+    setTimeout(hideLoader, 12000);
 
     loadDiscordWidget();
     setInterval(loadDiscordWidget, REFRESH_INTERVAL);
