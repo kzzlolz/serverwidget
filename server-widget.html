@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KittyCrumbs</title>
+  <title>Kitty Crumbs</title>
   
   <!-- Bakery / Sakura Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
@@ -356,7 +356,7 @@
   <div id="loading-screen">
     <div class="loader-content">
       <div class="loader-spinner">🧁</div>
-      <p>Baking the widget...</p>
+      <p>Baking the webpage...</p>
     </div>
   </div>
 
@@ -364,7 +364,7 @@
     <!-- LEFT SIDE WIDGET -->
     <div id="discord-widget">
       <div class="widget-header">
-        <h3 id="server-name">キティ・クラムズ・ベーカリー</h3>
+        <h3 id="server-name">Kitty Crumbs Bakery</h3>
         <div class="stats-container">
           <span class="stat-badge" id="online-count">0 Online</span>
           <span class="stat-badge-total" id="total-count-header">Total: --</span>
@@ -498,8 +498,8 @@
       }
     }
 
-    // Ultimate safety fallback: Force hide loader after 7 seconds no matter what
-    setTimeout(hideLoader, 7000);
+    // Ultimate safety fallback: Force hide loader after 15 seconds no matter what
+    setTimeout(hideLoader, 15000);
 
     loadDiscordWidget();
     setInterval(loadDiscordWidget, REFRESH_INTERVAL);
