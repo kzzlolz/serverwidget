@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kitty Crumbs Bakery</title>
   
-  <!-- Bakery / Sakura Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
-  <!-- Discord & Social Media Preview Card Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="🌸 Kitty Crumbs Bakery 🧁">
   <meta property="og:description" content="Welcome to Kitty Crumbs! Explore our server dashboard, live roster, rules, music, and events!">
   <meta property="og:image" content="https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif">
   <meta name="theme-color" content="#f8bbd0">
   
-  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -477,7 +474,7 @@
       border-bottom: 2px solid rgba(248, 187, 208, 0.3);
       padding-bottom: 12px;
       margin-bottom: 15px;
-      position: relative; /* Ensures it stays clean */
+      position: relative;
     }
 
     .modal-header h3 {
@@ -491,7 +488,7 @@
       color: #ffdce5;
       font-size: 1.5rem;
       cursor: pointer;
-      padding: 4px 8px; /* Gives it a larger clickable target area */
+      padding: 4px 8px;
       line-height: 1;
     }
 
@@ -518,27 +515,8 @@
       gap: 6px;
     }
 
-    /* Invite Button styling */
     .footer-action {
       margin-top: auto;
-    }
-
-    #invite-btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background-color: #f48fb1;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-
-    #invite-btn:hover {
-      background-color: #ec407a;
     }
 
     /* Responsive adjustments */
@@ -603,7 +581,6 @@
 </head>
 <body>
 
-  <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loader-content">
       <div class="loader-spinner">🧁</div>
@@ -612,7 +589,6 @@
     </div>
   </div>
 
-  <!-- POPUP MODALS -->
   <div id="rule-modal" class="modal-overlay" onclick="closeModalOnOutside(event)">
     <div class="modal-box">
       <div class="modal-header">
@@ -620,18 +596,15 @@
         <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body" id="modal-content-area">
-        <!-- Dynamically injected rules -->
-      </div>
+        </div>
       <div class="footer-action">
         <a class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener" style="display: block; width: 100%; text-align: center; background-color: #f48fb1; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;">Join Discord Server</a>
       </div>
     </div>
   </div>
 
-  <!-- Main Container -->
   <div id="widget-wrapper">
     
-    <!-- SIDEBAR -->
     <div class="sidebar">
       <div>
         <div class="sidebar-brand">
@@ -644,20 +617,23 @@
         </div>
       </div>
 
-      <!-- Integrated Lofi Music Player Widget -->
-      <div class="lofi-widget">
-        <div class="lofi-title">🎵 Bakery Lofi Beats</div>
-        <div class="lofi-controls">
-          <button class="lofi-btn" id="play-lofi-btn" onclick="toggleLofi()"><i class="fa-solid fa-play" id="lofi-icon"></i></button>
+      <div>
+        <div class="lofi-widget">
+          <div class="lofi-title">🎵 Bakery Lofi Beats</div>
+          <div class="lofi-controls">
+            <button class="lofi-btn" id="play-lofi-btn" onclick="toggleLofi()"><i class="fa-solid fa-play" id="lofi-icon"></i></button>
+          </div>
+          <audio id="lofi-audio" loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
         </div>
-        <audio id="lofi-audio" loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
+        
+        <div style="text-align: center; font-size: 0.7rem; opacity: 0.5; margin-top: 10px;">
+          Kitty Crumbs v1.4 🧁
+        </div>
       </div>
     </div>
 
-    <!-- CONTENT PANELS -->
     <div class="content-area">
 
-      <!-- TAB 1: HOME / LIVE ROSTER -->
       <div id="home-tab" class="tab-pane active">
         <div class="dash-header">
           <h3 id="server-name">Kitty Crumbs Bakery</h3>
@@ -693,11 +669,10 @@
         </div>
 
         <div class="footer-action">
-          <a id="invite-btn" class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Join Discord Server</a>
+          <a id="invite-btn" class="server-invite-link" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener" style="display: block; width: 100%; text-align: center; background-color: #f48fb1; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;">Join Discord Server</a>
         </div>
       </div>
 
-      <!-- TAB 2: BAKERY RULES -->
       <div id="rules-tab" class="tab-pane">
         <div class="dash-header">
           <h3>Bakery Rules</h3>
@@ -735,7 +710,6 @@
         </div>
       </div>
 
-      <!-- TAB 3: EVENTS & CARDS -->
       <div id="events-tab" class="tab-pane">
         <div class="dash-header">
           <h3>Events & Activities</h3>
@@ -751,7 +725,6 @@
     </div>
   </div>
 
-  <!-- JavaScript Logic -->
   <script>
     const MOD_ROLE_ID = "1528305985519751178";
     const BOT_ROLE_ID = "1526913039457190050";
@@ -759,11 +732,11 @@
 
     let globalMembersData = { mods: [], bots: [], members: [] };
 
-    // Rule sets for modals (clean format without role prompts)
+    // Rule sets for modals with specific invite links
     const ruleData = {
       qotd: {
         title: "QOTD Rules",
-        inviteUrl: "https://discord.gg/8waS8YxVu9", // Specific QOTD invite
+        inviteUrl: "https://discord.gg/8waS8YxVu9",
         html: `
           <ul>
             <li>You may type any answer based on the topic and question that was given.</li>
@@ -776,7 +749,7 @@
       },
       events: {
         title: "Events Rules",
-        inviteUrl: "https://discord.gg/8aTFtqX6Rx", // Specific Events invite
+        inviteUrl: "https://discord.gg/8aTFtqX6Rx",
         html: `
           <ul>
             <li>You may participate in events hosted by the @Events Host.</li>
@@ -790,7 +763,7 @@
       },
       movies: {
         title: "Movie Night Rules",
-        inviteUrl: "https://discord.gg/MWD8EDzkzh", // Specific Movie-Night invite
+        inviteUrl: "https://discord.gg/MWD8EDzkzh",
         html: `
           <ul>
             <li>No spamming or sending bulky messages.</li>
@@ -810,19 +783,28 @@
       const modal = document.getElementById('rule-modal');
       const titleEl = document.getElementById('modal-title');
       const contentEl = document.getElementById('modal-content-area');
-      const modalInviteBtn = document.getElementById('modal-invite-btn'); // Make sure to add an ID to the button in HTML
       
       if (ruleData[type]) {
         titleEl.innerText = ruleData[type].title;
         contentEl.innerHTML = ruleData[type].html;
         
-        // Change the invite button link dynamically based on the modal type!
+        // Dynamically update the invite button link based on the selected card
         const inviteLinkEl = modal.querySelector('.server-invite-link');
         if (inviteLinkEl && ruleData[type].inviteUrl) {
           inviteLinkEl.href = ruleData[type].inviteUrl;
         }
 
         modal.classList.add('active');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('rule-modal').classList.remove('active');
+    }
+
+    function closeModalOnOutside(event) {
+      if (event.target.id === 'rule-modal') {
+        closeModal();
       }
     }
 
@@ -863,109 +845,4 @@
         audio.play().catch(e => console.log("Audio play blocked:", e));
         icon.className = "fa-solid fa-pause";
       } else {
-        audio.pause();
-        icon.className = "fa-solid fa-play";
-      }
-    }
-
-    // Search / Filter Members Function
-    function filterMembers() {
-      const query = document.getElementById('member-search').value.toLowerCase();
-      renderLists(globalMembersData, query);
-    }
-
-    function hideLoader() {
-      const loader = document.getElementById('loading-screen');
-      const widget = document.getElementById('widget-wrapper');
-      
-      if (loader && !loader.classList.contains('hidden')) {
-        loader.classList.add('hidden');
-      }
-      if (widget) {
-        widget.classList.add('slide-up');
-      }
-    }
-
-    function renderLists(data, filterQuery = '') {
-      const modList = document.getElementById('mod-list');
-      const botList = document.getElementById('bot-list');
-      const memberList = document.getElementById('member-list');
-
-      modList.innerHTML = '';
-      botList.innerHTML = '';
-      memberList.innerHTML = '';
-
-      let onlineCount = 0;
-
-      const appendItem = (listElement, member) => {
-        const nameText = (member.display_name || member.username).toLowerCase();
-        if (filterQuery && !nameText.includes(filterQuery)) return;
-
-        const li = document.createElement('li');
-        li.className = 'member-item';
-
-        const avatar = document.createElement('img');
-        avatar.src = member.avatar_url;
-        avatar.alt = member.username;
-
-        const name = document.createElement('span');
-        name.innerText = member.display_name || member.username;
-
-        li.appendChild(avatar);
-        li.appendChild(name);
-        listElement.appendChild(li);
-      };
-
-      data.members.forEach(member => {
-        if (member.status === 'offline') return;
-        onlineCount++;
-
-        if (member.roles && member.roles.includes(MOD_ROLE_ID)) {
-          appendItem(modList, member);
-        } else if ((member.roles && member.roles.includes(BOT_ROLE_ID)) || member.bot) {
-          appendItem(botList, member);
-        } else {
-          appendItem(memberList, member);
-        }
-      });
-
-      document.getElementById('online-count').innerText = `${onlineCount} Online`;
-    }
-
-    async function loadDiscordWidget() {
-      try {
-        const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
-        const botData = await botResponse.json();
-
-        if (botData.server_name) {
-          document.getElementById('server-name').innerText = botData.server_name;
-          document.getElementById('brand-title').innerText = botData.server_name;
-        }
-
-        if (botData.total_members !== undefined) {
-          document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
-        }
-
-        if (botData.members && Array.isArray(botData.members)) {
-          globalMembersData = botData;
-          filterMembers();
-        }
-
-        hideLoader();
-      } catch (e) {
-        console.error('Error fetching bot server data:', e);
-      } finally {
-        // Safety timeout to dismiss loader even if fetch is slow
-        setTimeout(hideLoader, 3000);
-      }
-    }
-
-    // Ultimate safety fallback: Force hide loader after 5 seconds max so you never get stuck
-    setTimeout(hideLoader, 12000);
-
-    loadDiscordWidget();
-    setInterval(loadDiscordWidget, REFRESH_INTERVAL);
-  </script>
-
-</body>
-</html>
+        audio.pause
