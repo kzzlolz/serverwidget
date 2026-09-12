@@ -711,7 +711,7 @@
           <div class="lofi-controls">
             <button class="lofi-btn" id="play-lofi-btn" onclick="toggleLofi()"><i class="fa-solid fa-play" id="lofi-icon"></i></button>
           </div>
-          <audio id="lofi-audio" loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
+         <audio id="lofi-audio" autoplay muted loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
         </div>
         
         <!-- Version Tracker -->
@@ -1053,19 +1053,44 @@
           filterMembers();
         }
 
-        hideLoader();
-      } catch (e) {
-        console.error('Error fetching bot server data:', e);
-      } finally {
-        setTimeout(hideLoader, 3000);
-      }
+      window.addEventListener('load', function() {
+  const loader = document.getElementById('loading-screen'); // Change to your actual loader ID if different
+  
+  function dismissLoader() {
+    if (loader) {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 500);
     }
+  }
 
-    setTimeout(hideLoader, 12000);
+  // Failsafe timer (25 seconds max)
+  const failsafeTimer = setTimeout(dismissLoader, 25000);
+
+  // Dismiss immediately once everything is fully received/loaded
+  if (loader) {
+    clearTimeout(failsafeTimer);
+    dismissLoader();
+  }
+});
 
     loadDiscordWidget();
     setInterval(loadDiscordWidget, REFRESH_INTERVAL);
   </script>
+  <!-- Default Statcounter code for Kitty Crumbs
+https://kzzlolz.github.io/serverwidget/server-widget.html -->
+<script type="text/javascript">
+var sc_project=13354776; 
+var sc_invisible=1; 
+var sc_security="61a3e62d"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
+Statcounter" href="https://statcounter.com/" target="_blank"><img
+class="statcounter" src="https://c.statcounter.com/13354776/0/61a3e62d/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
 
 </body>
 </html>
