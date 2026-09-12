@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kitty Crumbs Bakery</title>
   
-  <!-- Bakery / Sakura Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧁</text></svg>">
 
-  <!-- Discord & Social Media Preview Card Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="🌸 Kitty Crumbs Bakery 🧁">
   <meta property="og:description" content="Welcome to Kitty Crumbs! Explore our server dashboard, live roster, rules, music, and events!">
   <meta property="og:image" content="https://c.tenor.com/yBw98jgTgAoAAAAC/tenor.gif">
   <meta name="theme-color" content="#f8bbd0">
   
-  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -634,30 +631,29 @@
     }
 
     /* Mobile Portrait Warning Banner */
-.mobile-rotate-warning {
-  display: none;
-  background-color: #ffe0b2;
-  color: #880e4f;
-  text-align: center;
-  padding: 8px 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-bottom: 2px solid #f8bbd0;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
+    .mobile-rotate-warning {
+      display: none;
+      background-color: #ffe0b2;
+      color: #880e4f;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-bottom: 2px solid #f8bbd0;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
 
-@media (max-width: 768px) and (orientation: portrait) {
-  .mobile-rotate-warning {
-    display: flex;
-  }
-}
+    @media (max-width: 768px) and (orientation: portrait) {
+      .mobile-rotate-warning {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loader-content">
       <div class="loader-spinner">🧁</div>
@@ -666,7 +662,6 @@
     </div>
   </div>
 
-  <!-- POPUP MODALS -->
   <div id="rule-modal" class="modal-overlay" onclick="closeModalOnOutside(event)">
     <div class="modal-box">
       <div class="modal-header">
@@ -674,23 +669,19 @@
         <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body" id="modal-content-area">
-        <!-- Dynamically injected rules -->
-      </div>
+        </div>
       <div class="footer-action">
         <a class="server-invite-link" id="modal-invite-btn" href="https://discord.gg/rdcdZ56S4M" target="_blank" rel="noopener">Join Discord Server</a>
       </div>
     </div>
   </div>
 
-  <!-- Main Container -->
   <div id="widget-wrapper">
 
-    <!-- 📱 Mobile Rotate Warning Banner -->
     <div class="mobile-rotate-warning">
       <i class="fa-solid fa-mobile-screen-button fa-rotate-90"></i> Tip: Rotate your phone sideways for a cozier view! ✨
     </div>
     
-    <!-- SIDEBAR -->
     <div class="sidebar">
       <div>
         <div class="sidebar-brand">
@@ -705,26 +696,22 @@
       </div>
 
       <div>
-        <!-- Integrated Lofi Music Player Widget -->
         <div class="lofi-widget">
           <div class="lofi-title">🎵 Bakery Lofi Beats</div>
           <div class="lofi-controls">
-            <button class="lofi-btn" id="play-lofi-btn" onclick="toggleLofi()"><i class="fa-solid fa-play" id="lofi-icon"></i></button>
+            <button class="lofi-btn" id="play-lofi-btn" onclick="toggleLofi()"><i class="fa-solid fa-volume-xmark" id="lofi-icon"></i></button>
           </div>
-         <audio id="lofi-audio" autoplay muted loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
+          <audio id="lofi-audio" autoplay muted loop src="https://stream.zeno.fm/f3wvbbqmdg8uv"></audio>
         </div>
         
-        <!-- Version Tracker -->
         <div style="text-align: center; font-size: 0.7rem; opacity: 0.5; margin-top: 10px;">
-          Kitty Crumbs v1.5 🧁
+          Kitty Crumbs v1.6 🧁
         </div>
       </div>
     </div>
 
-    <!-- CONTENT PANELS -->
     <div class="content-area">
 
-      <!-- TAB 1: HOME / LIVE ROSTER -->
       <div id="home-tab" class="tab-pane active">
         <div class="dash-header">
           <h3 id="server-name">Kitty Crumbs Bakery</h3>
@@ -764,7 +751,6 @@
         </div>
       </div>
 
-      <!-- TAB 2: BAKERY RULES -->
       <div id="rules-tab" class="tab-pane">
         <div class="dash-header">
           <h3>Bakery Rules</h3>
@@ -806,7 +792,6 @@
         </div>
       </div>
 
-      <!-- TAB 3: EVENTS & CARDS -->
       <div id="events-tab" class="tab-pane">
         <div class="dash-header">
           <h3>Events & Activities</h3>
@@ -842,7 +827,6 @@
     </div>
   </div>
 
-  <!-- JavaScript Logic -->
   <script>
     const MOD_ROLE_ID = "1528305985519751178";
     const BOT_ROLE_ID = "1526913039457190050";
@@ -956,12 +940,16 @@
       }
     }
 
-    // Lofi Player Controls
+    // Lofi Player Controls (Handles unmute/mute toggling nicely)
     function toggleLofi() {
       const audio = document.getElementById('lofi-audio');
       const icon = document.getElementById('lofi-icon');
       
-      if (audio.paused) {
+      if (audio.muted) {
+        audio.muted = false;
+        audio.play().catch(e => console.log("Audio play blocked:", e));
+        icon.className = "fa-solid fa-pause";
+      } else if (audio.paused) {
         audio.play().catch(e => console.log("Audio play blocked:", e));
         icon.className = "fa-solid fa-pause";
       } else {
@@ -974,18 +962,6 @@
     function filterMembers() {
       const query = document.getElementById('member-search').value.toLowerCase();
       renderLists(globalMembersData, query);
-    }
-
-    function hideLoader() {
-      const loader = document.getElementById('loading-screen');
-      const widget = document.getElementById('widget-wrapper');
-      
-      if (loader && !loader.classList.contains('hidden')) {
-        loader.classList.add('hidden');
-      }
-      if (widget) {
-        widget.classList.add('slide-up');
-      }
     }
 
     function hideLoader() {
@@ -1082,22 +1058,9 @@
       document.getElementById('online-count').innerText = `${onlineCount} Online`;
     }
 
+    loadDiscordWidget();
+    setInterval(loadDiscordWidget, REFRESH_INTERVAL);
   </script>
-  <!-- Default Statcounter code for Kitty Crumbs
-https://kzzlolz.github.io/serverwidget/server-widget.html -->
-<script type="text/javascript">
-var sc_project=13354776; 
-var sc_invisible=1; 
-var sc_security="61a3e62d"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
-Statcounter" href="https://statcounter.com/" target="_blank"><img
-class="statcounter" src="https://c.statcounter.com/13354776/0/61a3e62d/1/"
-alt="Web Analytics Made Easy - Statcounter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
 
 </body>
 </html>
