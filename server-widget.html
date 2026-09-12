@@ -988,6 +988,54 @@
       }
     }
 
+    function hideLoader() {
+      const loader = document.getElementById('loading-screen');
+      const widget = document.getElementById('widget-wrapper');
+      
+      if (loader && !loader.classList.contains('hidden')) {
+        loader.classList.add('hidden');
+      }
+      if (widget) {
+        widget.classList.add('slide-up');
+      }
+    }
+
+    // 25-Second Failsafe Timer so users never get stuck if something lags
+    const failsafeTimeout = setTimeout(() => {
+      hideLoader();
+    }, 25000);
+
+    async function loadDiscordWidget() {
+      try {
+        const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
+        const botData = await botResponse.json();
+
+        if (botData.server_name) {
+          document.getElementById('server-name').innerText = botData.server_name;
+          document.getElementById('brand-title').innerText = botData.server_name;
+        }
+
+        if (botData.total_members !== undefined) {
+          document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
+        }
+
+        if (botData.members && Array.isArray(botData.members)) {
+          globalMembersData = botData;
+          filterMembers();
+        }
+
+        // DATA IS RECEIVED SUCCESSFULLY -> Hide loader immediately & cancel failsafe!
+        clearTimeout(failsafeTimeout);
+        hideLoader();
+
+      } catch (e) {
+        console.error('Error fetching bot server data:', e);
+        // Even if it fails, hide the loader after an error so the page opens
+        clearTimeout(failsafeTimeout);
+        hideLoader();
+      }
+    }
+    
     function renderLists(data, filterQuery = '') {
       const modList = document.getElementById('mod-list');
       const botList = document.getElementById('bot-list');
@@ -1034,47 +1082,6 @@
       document.getElementById('online-count').innerText = `${onlineCount} Online`;
     }
 
-    async function loadDiscordWidget() {
-      try {
-        const botResponse = await fetch('https://serverwidget.onrender.com/api/guild-data');
-        const botData = await botResponse.json();
-
-        if (botData.server_name) {
-          document.getElementById('server-name').innerText = botData.server_name;
-          document.getElementById('brand-title').innerText = botData.server_name;
-        }
-
-        if (botData.total_members !== undefined) {
-          document.getElementById('total-count-header').innerText = `Total: ${botData.total_members}`;
-        }
-
-        if (botData.members && Array.isArray(botData.members)) {
-          globalMembersData = botData;
-          filterMembers();
-        }
-
-      window.addEventListener('load', function() {
-  const loader = document.getElementById('loading-screen'); // Change to your actual loader ID if different
-  
-  function dismissLoader() {
-    if (loader) {
-      loader.style.opacity = '0';
-      setTimeout(() => loader.style.display = 'none', 500);
-    }
-  }
-
-  // Failsafe timer (25 seconds max)
-  const failsafeTimer = setTimeout(dismissLoader, 25000);
-
-  // Dismiss immediately once everything is fully received/loaded
-  if (loader) {
-    clearTimeout(failsafeTimer);
-    dismissLoader();
-  }
-});
-
-    loadDiscordWidget();
-    setInterval(loadDiscordWidget, REFRESH_INTERVAL);
   </script>
   <!-- Default Statcounter code for Kitty Crumbs
 https://kzzlolz.github.io/serverwidget/server-widget.html -->
